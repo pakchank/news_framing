@@ -13,13 +13,10 @@ if __name__ == '__main__':
     for item in c:
         html = item[0]
         num = item[1]
-        #print(str(i) + str(num))
 
         try:
-            #temp = Article.parse(item[0])
-            #temp = Article.text(temp)
             news_text = fulltext(item[0])
-            print(news_text)
+            #print(news_text)
             cc.execute("UPDATE tweets_1 SET news_text = %s WHERE num = %s", (news_text, str(num)))
             conn.commit()
         
