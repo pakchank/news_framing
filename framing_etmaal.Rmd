@@ -1,16 +1,36 @@
 ---
-title: "R Notebook"
+title: "Framing Analysis"
 output: html_notebook
 ---
 
-This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code. 
+This is for analysis of news outlets' framing on Twitter
 
-Try executing this chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*. 
+# 0. Preambles
 
 ```{r}
-plot(cars)
+source("C:/Users/panik/Dropbox/Dissertation/text_mining_functions.R")
+source("mysql_cred.R")
+library(glmnetUtils)
 ```
 
-Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+```{r}
+con <- dbConnect(MySQL(), user=mysql_user, password=mysql_pass, host=mysql_host, db=mysql_db)
+```
 
-When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+# 1. Load Data
+```{r}
+dt <- dbGetQuery(con, "SELECT * FROM tweets_1 ORDER BY RAND() LIMIT 1000")
+```
+
+
+```{r}
+dbGetQuery(con, 'show columns from tweets_1')
+```
+
+```{r}
+dbGetQuery(con, 'select count(*) from tweets_1')
+```
+
+
+* social media v. websites
+* between news outlest
