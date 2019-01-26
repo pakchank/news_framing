@@ -1,0 +1,36 @@
+---
+title: "Framing Analysis"
+output: html_notebook
+---
+
+This is for analysis of news outlets' framing on Twitter
+
+# 0. Preambles
+
+```{r}
+source("C:/Users/panik/Dropbox/Dissertation/text_mining_functions.R")
+source("mysql_cred.R")
+library(glmnetUtils)
+```
+
+```{r}
+con <- dbConnect(MySQL(), user=mysql_user, password=mysql_pass, host=mysql_host, db=mysql_db)
+```
+
+# 1. Load Data
+```{r}
+dt <- dbGetQuery(con, "SELECT * FROM tweets_1 ORDER BY RAND() LIMIT 1000")
+```
+
+
+```{r}
+dbGetQuery(con, 'show columns from tweets_1')
+```
+
+```{r}
+dbGetQuery(con, 'select count(*) from tweets_1')
+```
+
+
+* social media v. websites
+* between news outlest
